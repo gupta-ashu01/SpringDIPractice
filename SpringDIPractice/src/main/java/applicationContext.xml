@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd 
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean id="department" class="com.app.Department">
+		<constructor-arg value="IT department" />
+	</bean>
+	<bean id="address" class="com.app.CurrentAddress">
+		<constructor-arg name="city" value="Noida" />
+		<constructor-arg name="state" value="U.P" />
+		<constructor-arg name="house" value="H1234" />
+		<constructor-arg name="pincode" value="1234"
+			type="int" />
+
+		<property name="landmark" value="STAR HOTEL" />
+	</bean>
+
+	<bean id="address2" class="com.app.CurrentAddress">
+		<constructor-arg name="city" value="Kanpur" />
+		<constructor-arg name="state" value="U.P" />
+		<constructor-arg name="house" value="H9056" />
+		<constructor-arg name="pincode" value="2345"
+			type="int" />
+		<property name="landmark" value="GREEN PARK" />
+	</bean>
+
+	<bean id="employee" class="com.app.Employee">
+		<property name="department" ref="department" />
+		<constructor-arg ref="address" />
+		<constructor-arg>
+			<list>
+				<value>Laptop</value>
+				<value>Headphones</value>
+				<value>ID card</value>
+			</list>
+		</constructor-arg>
+		<constructor-arg>
+			<list>
+				<ref bean="address" />
+				<ref bean="address2" />
+			</list>
+		</constructor-arg>
+		<constructor-arg>
+			<map>
+				<entry key="Technical" value="Above Expectation"></entry>
+				<entry key="Leadership" value="Average"></entry>
+				<entry key="Communication" value="Met Expectation"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+
+</beans>
